@@ -3,7 +3,7 @@ from . import views
 
 urlpatterns = [
     path("", views.starting_page, name="starting-page"),
-    # path("posts", views.posts, name='posts'),
-    # path("posts/<slug:slug>", views.post_detail, name='post_detail')
+    path("posts", views.posts, name='posts'),
+    path("posts/<slug:slug>", views.single_post, name='single_post')
 
 ]
