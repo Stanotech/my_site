@@ -5,9 +5,9 @@ def starting_page(request):
     return render(request, "blog/index.html")
 
 def posts(request):
-    pass
+    return render(request, "blog/category.html")
 
-def post_detail(request):
-    pass
+def single_post(request):
+    return render(request, "blog/single-post.html")
 
  
