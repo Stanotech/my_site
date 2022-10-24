@@ -21,7 +21,7 @@ Stan Blog
       <nav id="navbar" class="navbar">
         <ul>
           <li><a href="{% url 'starting_page' %}">Blog</a></li>
-          <li><a href="{% url 'single_post' %}">Single Post</a></li>
+          <li><a href="{% url 'single_post' slug='post1' %}">Single Post</a></li>
           <li class="dropdown"><a href="category.html"><span>Categories</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
               <li><a href="search-result.html">Search Result</a></li>
