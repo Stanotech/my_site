@@ -79,37 +79,37 @@ Stan Blog
             <div class="swiper sliderFeaturedPosts">
               <div class="swiper-wrapper">
                 <div class="swiper-slide">
-                  <a href="{% url 'single_post' slug='post1' %}" class="img-bg d-flex align-items-end" style="background-image: url({% static 'blog/assets/img/nerd.jpg' %});">
+                  <a href="{% url 'single_post' slug=all_posts.0.slug %}" class="img-bg d-flex align-items-end" style="background-image: url({% static 'blog/assets/img/'|add:all_posts.0.image %});">
                     <div class="img-bg-inner">
-                      <h2>{{all_posts.post1.title}}</h2>
-                      <p>{{all_posts.post1.excerpt}}</p>
+                      <h2>{{all_posts.0.title}}</h2>
+                      <p>{{all_posts.0.excerpt}}</p>
                     </div>
                   </a>
                 </div>
 
                 <div class="swiper-slide">
-                  <a href="{% url 'single_post' slug='post2' %}" class="img-bg d-flex align-items-end" style="background-image: url({% static 'blog/assets/img/post-slide-2.jpg' %});">
+                  <a href="{% url 'single_post' slug=all_posts.1.slug %}" class="img-bg d-flex align-items-end" style="background-image: url({% static 'blog/assets/img/'|add:all_posts.1.image %});">
                     <div class="img-bg-inner">
-                      <h2>17 Pictures of Medium Length Hair in Layers That Will Inspire Your New Haircut</h2>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem neque est mollitia! Beatae minima assumenda repellat harum vero, officiis ipsam magnam obcaecati cumque maxime inventore repudiandae quidem necessitatibus rem atque.</p>
+                      <h2>{{all_posts.1.title}}</h2>
+                      <p>{{all_posts.1.excerpt}}</p>
                     </div>
                   </a>
                 </div>
 
                 <div class="swiper-slide">
-                  <a href="{% url 'single_post' slug='post3' %}" class="img-bg d-flex align-items-end" style="background-image: url({% static 'blog/assets/img/post-slide-3.jpg' %});">
+                  <a href="{% url 'single_post' slug=all_posts.2.slug %}" class="img-bg d-flex align-items-end" style="background-image: url({% static 'blog/assets/img/'|add:all_posts.2.image %});">
                     <div class="img-bg-inner">
-                      <h2>13 Amazing Poems from Shel Silverstein with Valuable Life Lessons</h2>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem neque est mollitia! Beatae minima assumenda repellat harum vero, officiis ipsam magnam obcaecati cumque maxime inventore repudiandae quidem necessitatibus rem atque.</p>
+                      <h2>{{all_posts.2.title}}</h2>
+                      <p>{{all_posts.2.excerpt}}</p>
                     </div>
                   </a>
                 </div>
 
                 <div class="swiper-slide">
-                  <a href="{% url 'single_post' slug='post3' %}" class="img-bg d-flex align-items-end" style="background-image: url({% static 'blog/assets/img/post-slide-4.jpg' %});">
+                  <a href="{% url 'single_post' slug=all_posts.3.slug %}" class="img-bg d-flex align-items-end" style="background-image: url({% static 'blog/assets/img/'|add:all_posts.3.image %});">
                     <div class="img-bg-inner">
-                      <h2>9 Half-up/half-down tyles for Long and Medium Hair</h2>
-                      <p>Lorem ipsum dolor sit aggfmhgfet, consectetur adipisicing elit. Quidem neque est mollitia! Beatae minima assumenda repellat harum vero, officiis ipsam magnam obcaecati cumque maxime inventore repudiandae quidem necessitatibus rem atque.</p>
+                      <h2>{{all_posts.3.title}}</h2>
+                      <p>{{all_posts.3.excerpt}}</p>
                     </div>
                   </a>
                 </div>
@@ -142,16 +142,16 @@ Stan Blog
 
             <div class="d-lg-flex post-entry-2">
               <a href="{% url 'single_post' slug='post1' %}" class="me-4 thumbnail mb-4 mb-lg-0 d-inline-block">
-                <img src="{% static 'blog/assets/img/post-landscape-6.jpg' %}" alt="" class="img-fluid">
+                <img src="{% static 'blog/assets/img/'|add:all_posts.0.image' %}" alt="" class="img-fluid">
               </a>
               <div>
                 <div class="post-meta"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                <h3><a href="{% url 'single_post' slug='post1' %}">What is the son of Football Coach John Gruden, Deuce Gruden doing Now?</a></h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio placeat exercitationem magni voluptates dolore. Tenetur fugiat voluptates quas, nobis error deserunt aliquam temporibus sapiente, laudantium dolorum itaque libero eos deleniti?</p>
+                <h3><a href="{% url 'single_post' slug=all_posts.0.slug %}">{{all_posts.0.title}}</a></h3>
+                <p>{{all_posts.0.excerpt}}</p>
                 <div class="d-flex align-items-center author">
-                  <div class="photo"><img src="{% static 'blog/assets/img/person-2.jpg' %}" alt="" class="img-fluid"></div>
+                  <div class="photo"><img src="{% static 'blog/assets/img/'|add:all_posts.0.author|add:'.jpg' %}" alt="" class="img-fluid"></div>
                   <div class="name">
-                    <h3 class="m-0 p-0">Wade Warren</h3>
+                    <h3 class="m-0 p-0">{{all_posts.0.author}}</h3>
                   </div>
                 </div>
               </div>
@@ -160,26 +160,41 @@ Stan Blog
             <div class="row">
               <div class="col-lg-4">
                 <div class="post-entry-1 border-bottom">
-                  <a href="{% url 'single_post' slug='post1' %}"><img src="{% static 'blog/assets/img/post-landscape-1.jpg' %}" alt="" class="img-fluid"></a>
+                  <a href="{% url 'single_post' slug=all_posts.1.slug %}" ><img src="{% static 'blog/assets/img/'|add:all_posts.1.image %}" alt="" class="img-fluid"></a>
                   <div class="post-meta"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                  <h2 class="mb-2"><a href="{% url 'single_post' slug='post1' %}">11 Work From Home Part-Time Jobs You Can Do Now</a></h2>
-                  <span class="author mb-3 d-block">Jenny Wilson</span>
-                  <p class="mb-4 d-block">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero temporibus repudiandae, inventore pariatur numquam cumque possimus</p>
+                  <h2 class="mb-2"><a href="{% url 'single_post' slug=all_posts.1.slug %}">{{all_posts.1.title}}</a></h2>
+                  <div class="d-flex align-items-center author">
+                    <div class="photo"><img src="{% static 'blog/assets/img/'|add:all_posts.1.author|add:'.jpg' %}" alt="" class="img-fluid"></div>
+                    <div class="name">
+                      <h3 class="m-0 p-0">{{all_posts.1.author}}</h3>
+                    </div>
+                  </div>
+                  <p class="mb-4 d-block">{{all_posts.1.excerpt}}</p>
                 </div>
 
                 <div class="post-entry-1">
                   <div class="post-meta"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                  <h2 class="mb-2"><a href="{% url 'single_post' slug='post1' %}">5 Great Startup Tips for Female Founders</a></h2>
-                  <span class="author mb-3 d-block">Jenny Wilson</span>
+                  <h2 class="mb-2"><a href="{% url 'single_post' slug=all_posts.3.slug %}">{{all_posts.3.title}}</a></h2>
+                  <div class="d-flex align-items-center author">
+                    <div class="photo"><img src="{% static 'blog/assets/img/'|add:all_posts.3.author|add:'.jpg' %}" alt="" class="img-fluid"></div>
+                    <div class="name">
+                      <h3 class="m-0 p-0">{{all_posts.3.author}}</h3>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="col-lg-8">
                 <div class="post-entry-1">
-                  <a href="{% url 'single_post' slug='post1' %}"><img src="{% static 'blog/assets/img/post-landscape-2.jpg' %}" alt="" class="img-fluid"></a>
+                  <a href="{% url 'single_post' slug=all_posts.2.slug %}"><img src="{% static 'blog/assets/img/'|add:all_posts.2.image %}" alt="" class="img-fluid"></a>
                   <div class="post-meta"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                  <h2 class="mb-2"><a href="{% url 'single_post' slug='post1' %}">How to Avoid Distraction and Stay Focused During Video Calls?</a></h2>
-                  <span class="author mb-3 d-block">Jenny Wilson</span>
-                  <p class="mb-4 d-block">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero temporibus repudiandae, inventore pariatur numquam cumque possimus</p>
+                  <h2 class="mb-2"><a href="{% url 'single_post' slug='post1' %}">{{all_posts.2.title}}</a></h2>
+                  <div class="d-flex align-items-center author">
+                    <div class="photo"><img src="{% static 'blog/assets/img/'|add:all_posts.2.author|add:'.jpg' %}" alt="" class="img-fluid"></div>
+                    <div class="name">
+                      <h3 class="m-0 p-0">{{all_posts.2.author}}</h3>
+                    </div>
+                  </div>
+                  <p class="mb-4 d-block">{{all_posts.2.excerpt}}</p>
                 </div>
               </div>
             </div>
