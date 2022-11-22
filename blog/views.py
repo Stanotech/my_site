@@ -1,7 +1,7 @@
 from datetime import date
 from django.shortcuts import render
 from django.http import Http404
-from models import Author, Post, Tag
+from .models import Author, Post, Tag
 
 posts_content = [
     {
