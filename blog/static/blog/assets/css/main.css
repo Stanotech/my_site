@@ -590,7 +590,7 @@ section {
 }
 
 .post-entry-2 .thumbnail {
-  flex: 0 0 65%;
+  flex: 0 0 50%;
 }
 
 @media (max-width: 960px) {
