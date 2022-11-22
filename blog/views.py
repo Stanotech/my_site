@@ -1,6 +1,7 @@
 from datetime import date
 from django.shortcuts import render
 from django.http import Http404
+from models import Author, Post, Tag
 
 posts_content = [
     {
@@ -10,7 +11,7 @@ posts_content = [
         "author": "Stan",
         "date": date(2022, 10, 24),
         "excerpt": "Few secret simple tricks for becoming Web Dev in just a few clicks ! HR Department hates me! ",
-        "content": "You just need a GitHub repository with projects like this: <ul> <li> Vending MAchine</li> <li> Online pong game </li> <li> Blog site made with Django framework </li> <li> G-code generator for smoothing artefacts in your prints </li></ul>"
+        "content": "You just need a GitHub repository with projects like this: <ul> <li> Vending machine done entirely by yourself</li> <li> Online pong game </li> <li> Blog site made with Django framework </li> <li> G-code generator for smoothing artefacts in your 3D prints </li></ul>"
     },
     {
         "slug": "post2",
