@@ -141,7 +141,7 @@ Stan Blog
           <div class="col-md-12">
 
             <div class="d-lg-flex post-entry-2">
-              <a href="{% url 'single_post' slug='post1' %}" class="me-4 thumbnail mb-4 mb-lg-0 d-inline-block">
+              <a href="{% url 'single_post' slug=all_posts.0.slug %}" class="me-4 thumbnail mb-4 mb-lg-0 d-inline-block">
                 <img src="{% static 'blog/assets/img/'|add:all_posts.0.image' %}" alt="" class="img-fluid">
               </a>
               <div>
@@ -149,7 +149,7 @@ Stan Blog
                 <h3><a href="{% url 'single_post' slug=all_posts.0.slug %}">{{all_posts.0.title}}</a></h3>
                 <p>{{all_posts.0.excerpt}}</p>
                 <div class="d-flex align-items-center author">
-                  <div class="photo"><img src="{% static 'blog/assets/img/'|add:all_posts.0.author|add:'.jpg' %}" alt="" class="img-fluid"></div>
+                  <div class="photo"><img src="{% static 'blog/assets/img/'|add:all_posts.0.author.first_name|add:'.jpg' %}" alt="" class="img-fluid"></div>
                   <div class="name">
                     <h3 class="m-0 p-0">{{all_posts.0.author}}</h3>
                   </div>
@@ -164,7 +164,7 @@ Stan Blog
                   <div class="post-meta"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
                   <h2 class="mb-2"><a href="{% url 'single_post' slug=all_posts.1.slug %}">{{all_posts.1.title}}</a></h2>
                   <div class="d-flex align-items-center author">
-                    <div class="photo"><img src="{% static 'blog/assets/img/'|add:all_posts.1.author|add:'.jpg' %}" alt="" class="img-fluid"></div>
+                    <div class="photo"><img src="{% static 'blog/assets/img/'|add:all_posts.1.author.first_name|add:'.jpg' %}" alt="" class="img-fluid"></div>
                     <div class="name">
                       <h3 class="m-0 p-0">{{all_posts.1.author}}</h3>
                     </div>
@@ -176,7 +176,7 @@ Stan Blog
                   <div class="post-meta"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
                   <h2 class="mb-2"><a href="{% url 'single_post' slug=all_posts.3.slug %}">{{all_posts.3.title}}</a></h2>
                   <div class="d-flex align-items-center author">
-                    <div class="photo"><img src="{% static 'blog/assets/img/'|add:all_posts.3.author|add:'.jpg' %}" alt="" class="img-fluid"></div>
+                    <div class="photo"><img src="{% static 'blog/assets/img/'|add:all_posts.3.author.first_name|add:'.jpg' %}" alt="" class="img-fluid"></div>
                     <div class="name">
                       <h3 class="m-0 p-0">{{all_posts.3.author}}</h3>
                     </div>
@@ -187,9 +187,9 @@ Stan Blog
                 <div class="post-entry-1">
                   <a href="{% url 'single_post' slug=all_posts.2.slug %}"><img src="{% static 'blog/assets/img/'|add:all_posts.2.image %}" alt="" class="img-fluid"></a>
                   <div class="post-meta"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                  <h2 class="mb-2"><a href="{% url 'single_post' slug='post1' %}">{{all_posts.2.title}}</a></h2>
+                  <h2 class="mb-2"><a href="{% url 'single_post' slug=all_posts.2.slug %}">{{all_posts.2.title}}</a></h2>
                   <div class="d-flex align-items-center author">
-                    <div class="photo"><img src="{% static 'blog/assets/img/'|add:all_posts.2.author|add:'.jpg' %}" alt="" class="img-fluid"></div>
+                    <div class="photo"><img src="{% static 'blog/assets/img/'|add:all_posts.2.author.first_name|add:'.jpg' %}" alt="" class="img-fluid"></div>
                     <div class="name">
                       <h3 class="m-0 p-0">{{all_posts.2.author}}</h3>
                     </div>

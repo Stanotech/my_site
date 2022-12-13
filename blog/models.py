@@ -6,8 +6,15 @@ class Author(models.Model):
      last_name =models.CharField(max_length=15)
      email =models.CharField(max_length=20)
 
+     def __str__(self):
+        return f"{self.first_name}"
+     
+
 class Tag(models.Model):
      caption =models.CharField(max_length=8)
+
+     def __str__(self):
+        return f"{self.caption}"
 
 class Post(models.Model):
      
@@ -19,6 +26,9 @@ class Post(models.Model):
      content =models.CharField(max_length=2000)
      tag = models.ManyToManyField(Tag)
      slug =models.SlugField(max_length=55)
+
+     def __str__(self):
+        return f"{self.title}"
      
 
 
