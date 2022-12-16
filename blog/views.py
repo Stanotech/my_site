@@ -1,7 +1,10 @@
 from datetime import date
 from django.shortcuts import render
 from django.http import Http404
-from .models import Author, Post, Tag
+from .models import Post, Comment
+from .forms import CommentForm
+from django.views.generic.detail import DetailView
+from django.views.generic import ListView
 
 posts_content = Post.objects.all().order_by("date")
 
@@ -9,28 +12,33 @@ posts_content = Post.objects.all().order_by("date")
 def starting_page(request):
     latest_posts = posts_content
     return render(request, "blog/index.html", {
-            "all_posts": latest_posts,             #passing all post(posts_content) variable to index.htmp
-        })           
+        # passing all post(posts_content) variable to index.htmp
+        "all_posts": latest_posts,
+    })
+
 
 def posts(request):
     latest_posts = posts_content
     return render(request, "blog/all_posts.html", {
-            "all_posts": latest_posts,             #passing all post(posts_content) variable to index.htmp
-        })       
-        
-def single_post(request, slug):
-    print(slug)
-    wanted_post = next(post for post in posts_content if slug == post.slug)  #if requested slug is equal to slug of post from dictionary than assaign this post. Next convert last list object to just object outside list.
-    print(wanted_post)
-    try:
-        return render(request, "blog/single_post.html", {
-            "title": wanted_post.title,
-            "image": wanted_post.image,
-            "author": wanted_post.author,
-            "date": wanted_post.date,
-            "excerpt": wanted_post.excerpt,
-            "content": wanted_post.content,            
-        })
+        # passing all post(posts_content) variable to index.htmp
+        "all_posts": latest_posts,
+    })
 
-    except:
-        raise Http404("Site does not exist")
+
+class single_post(DetailView):
+    template_name = "blog/single_post.html"
+    model = Post
+
+    def get_context_data(self, **kwargs):
+        wanted_post = next(post for post in posts_content if self.kwargs["slug"]== post.slug)
+        context = super().get_context_data(**kwargs)
+        context["title"] = wanted_post.title
+        context["image"] = wanted_post.image
+        context["author"] = wanted_post.author
+        context["date"] = wanted_post.date
+        context["excerpt"] = wanted_post.excerpt
+        context["content"] = wanted_post.content
+        context["comments"] = Comment.objects.all()
+        context["form"] = CommentForm()
+        
+        return context

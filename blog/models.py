@@ -18,6 +18,7 @@ class Tag(models.Model):
     def __str__(self):
         return f"{self.caption}"
 
+
 class Post(models.Model):
 
     title = models.CharField(max_length=50)
@@ -32,9 +33,17 @@ class Post(models.Model):
     def __str__(self):
         return f"{self.title}"
 
+
 class Comment(models.Model):
-   
-   post = models.ForeignKey(Post, on_delete=models.CASCADE)     # many to one
-   author = models.CharField(max_length=50)
-   content = models.CharField(max_length=2000)
-   creation_date = models.DateTimeField(auto_now_add=True)
+
+    post = models.ForeignKey(
+        Post, on_delete=models.CASCADE, related_name='comments')     # many to one
+    author = models.CharField(max_length=50)
+    content = models.CharField(max_length=2000)
+    creation_date = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['creation_date']
+
+    def __str__(self):
+        return f"{self.author}"
