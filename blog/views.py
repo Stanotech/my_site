@@ -1,10 +1,11 @@
 from datetime import date
 from django.shortcuts import render
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
 from .models import Post, Comment
 from .forms import CommentForm
 
 from django.views.generic import CreateView, TemplateView, ListView
+from django.views import View
 
 posts_content = Post.objects.all().order_by("date")
 
@@ -25,28 +26,51 @@ class posts(ListView):
     ordering = ["-date"]
 
 
-class single_post(CreateView):
-    template_name = "blog/single_post.html"
-    model = Post
-    form_class = CommentForm
-    succes_url = "blog/single_post.html"
+class single_post(View):
 
-    # by default view don’t know what to do with data.
-    def form_valid(self, form):
-        form.save()				# so please save data to database
-        return super().form_valid(form)  # and return it
 
-    def get_context_data(self, **kwargs):
-        wanted_post = next(
-            post for post in posts_content if self.kwargs["slug"] == post.slug)
-        context = super().get_context_data(**kwargs)
-        context["title"] = wanted_post.title
-        context["image"] = wanted_post.image
-        context["author"] = wanted_post.author
-        context["date"] = wanted_post.date
-        context["excerpt"] = wanted_post.excerpt
-        context["content"] = wanted_post.content
-        context["comments"] = Comment.objects.all()
-        context["form"] = CommentForm()
+  
 
-        return context
+    def get(self, request, slug):
+        post = Post.objects.get(slug=slug)
+        context = {
+            "title": post.title,
+            "image": post.image,
+            "author": post.author,
+            "date": post.date,
+            "excerpt": post.excerpt,
+            "content": post.content,
+            "comments": Comment.objects.filter(post = post),
+            "form": CommentForm(),
+            "post": post,
+            "post_tags": post.tag.all(),
+            "slug": slug,
+        }
+        return render(request, "blog/single_post.html", context)
+
+    def post(self, request, slug):
+        form = CommentForm(request.POST)
+        post = Post.objects.get(slug=slug)
+        context = {
+            "form": form,
+            "title": post.title,
+            "image": post.image,
+            "author": post.author,
+            "date": post.date,
+            "excerpt": post.excerpt,
+            "content": post.content,
+            "comments": Comment.objects.filter(post = post),
+            "form": CommentForm(),
+            "post": post,
+            "post_tags": post.tag.all(),
+            "slug": slug,
+         }
+
+        if form.is_valid():  # is user empty ?, id form is valid ?,
+            comment = form.save(commit=False)
+            comment.post = post
+            comment.save()
+            # if not empty than redirect to thank you url
+            return render(request, "blog/single_post.html", context)
+
+        return render(request, "blog/single_post.html", context)
