@@ -1,6 +1,6 @@
 {% load static %}  
 
-{% for post in all_posts%}
+{% for post in posts%}
 
     <a href="single_post.html" class="me-4 thumbnail">
       <img src="{% static 'blog/assets/img/'|add:post.image %}" alt="" class="img-fluid">
@@ -16,6 +16,7 @@
         </div>
       </div>
     </div>
+
 {% endfor %}
 
 

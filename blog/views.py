@@ -26,12 +26,46 @@ class posts(ListView):
     ordering = ["-date"]
 
 
+class posts_to_read(View):
+    def get(self, request):
+        stored_post_id_list = request.session.get("read_later")    #read session variable from database
+        stored_posts = (Post.objects.get(id=id) for id in stored_post_id_list) 
+        print(stored_posts)
+        return render(request, "blog/to_read_list.html", {
+            "posts": stored_posts
+        })
+
+
 class single_post(View):
 
-
-  
-
     def get(self, request, slug):
+        post = Post.objects.get(slug=slug)
+        request = self.request
+        read_later_list = request.session.get("read_later")
+        print(read_later_list)
+        if read_later_list is None or post.id in read_later_list:
+            read_later = "Remove from List"
+        else:
+            read_later = "Read later"
+
+        context = {
+            "title": post.title,
+            "image": post.image,
+            "author": post.author,
+            "date": post.date,
+            "excerpt": post.excerpt,
+            "content": post.content,
+            "comments": Comment.objects.filter(post=post),
+            "form": CommentForm(),
+            "post": post,
+            "post_tags": post.tag.all(),
+            "slug": slug,
+            "read_later": read_later
+        }
+        return render(request, "blog/single_post.html", context)
+
+    def post(self, request, slug):      # dlaczego slug
+        form = CommentForm(request.POST)
         post = Post.objects.get(slug=slug)
         context = {
             "title": post.title,
@@ -40,37 +74,34 @@ class single_post(View):
             "date": post.date,
             "excerpt": post.excerpt,
             "content": post.content,
-            "comments": Comment.objects.filter(post = post),
+            "comments": Comment.objects.filter(post=post),
             "form": CommentForm(),
             "post": post,
             "post_tags": post.tag.all(),
             "slug": slug,
         }
-        return render(request, "blog/single_post.html", context)
-
-    def post(self, request, slug):
-        form = CommentForm(request.POST)
-        post = Post.objects.get(slug=slug)
-        context = {
-            "form": form,
-            "title": post.title,
-            "image": post.image,
-            "author": post.author,
-            "date": post.date,
-            "excerpt": post.excerpt,
-            "content": post.content,
-            "comments": Comment.objects.filter(post = post),
-            "form": CommentForm(),
-            "post": post,
-            "post_tags": post.tag.all(),
-            "slug": slug,
-         }
 
         if form.is_valid():  # is user empty ?, id form is valid ?,
-            comment = form.save(commit=False)
+            comment = form.save(commit=False)   # creating form object to edit
+            # editing the "post" field to let database know to which post it should be saved
             comment.post = post
             comment.save()
             # if not empty than redirect to thank you url
             return render(request, "blog/single_post.html", context)
 
         return render(request, "blog/single_post.html", context)
+
+
+class AddToRead(View):
+    def post(self, request):
+        stored_posts = request.session.get("read_later")    #read session variable from database
+        if stored_posts is None:        #first creation of empty list if there is no variable in database
+            stored_posts = []        
+        post_id = int(request.POST['post_id'])  #getting the post id from request
+        if post_id not in stored_posts:
+            stored_posts.append(post_id)        # add post id to list it it's not there yet
+        else:
+            stored_posts.remove(post_id)        # or remove it if it is there allready
+        request.session["read_later"] = stored_posts    # save this list to session variable in database
+        current_post = Post.objects.get(id=post_id)     # getting the post of that ID to get the slug
+        return HttpResponseRedirect("/posts/" + current_post.slug)
