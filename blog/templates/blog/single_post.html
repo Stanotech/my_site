@@ -80,10 +80,10 @@ Stan Blog
             <div class="single_post">
               <div class="post-meta"><span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
               <h1 class="mb-5">{{title}}</h1>
-              <form action={% url 'single_post' slug=post.slug %} method="POST" id="read_form">
+              <form action={% url 'session' %} method="POST" id="read_form">
                 {% csrf_token %}
-                <input type="hidden" name="review_id" value="{{ review.id }}">
-                <button>read later</button>
+                <input type="hidden" name="post_id" value="{{ post.id }}">
+                <button>{{read_later}}</button>
               </form>
               <br>
               <p>{{content}}</p>

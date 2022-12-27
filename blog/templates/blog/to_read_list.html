@@ -69,19 +69,30 @@ All posts
 </header><!-- End Header -->
 
 <main id="main">
-
+  <section>
     <div class="container">
       <div class="row">
 
         <div class="col-md-12" data-aos="fade-up">
+          <h3 class="category-title">Category: Business</h3>
 
-          {% include "blog/includes/post.html"%}
+          {% include "blog/includes/post_to_read.html"%}
 
-
+          <div class="text-start py-4">
+            <div class="custom-pagination">
+              <a href="#" class="prev">Prevous</a>
+              <a href="#" class="active">1</a>
+              <a href="#">2</a>
+              <a href="#">3</a>
+              <a href="#">4</a>
+              <a href="#">5</a>
+              <a href="#" class="next">Next</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-
+  </section>
 </main><!-- End #main -->
 
 <!-- ======= Footer ======= -->
