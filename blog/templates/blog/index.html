@@ -8,49 +8,9 @@ Stan Blog
 
 {%block content%}
 
-  <!-- ======= Header ======= -->
-  <header id="header" class="header d-flex align-items-center fixed-top">
-    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-
-      <a href="{% url 'starting_page' %}" class="logo d-flex align-items-center">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1>Stan Blog</h1>
-      </a>
-
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a href="{% url 'starting_page' %}">Blog</a></li>
-          <li><a href="{% url 'single_post' slug='post1' %}">Single Post</a></li>
-          <li><a href="{% url 'posts' %}">All Posts</a></li>
-          <li><a href="{% url 'to_read' %}">To Read Posts</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav><!-- .navbar -->
-
-      <div class="position-relative">
-        <a href="#" class="mx-2"><span class="bi-facebook"></span></a>
-        <a href="#" class="mx-2"><span class="bi-twitter"></span></a>
-        <a href="#" class="mx-2"><span class="bi-instagram"></span></a>
-
-        <a href="#" class="mx-2 js-search-open"><span class="bi-search"></span></a>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-
-        <!-- ======= Search Form ======= -->
-        <div class="search-form-wrap js-search-form-wrap">
-          <form action="search-result.html" class="search-form">
-            <span class="icon bi-search"></span>
-            <input type="text" placeholder="Search" class="form-control">
-            <button class="btn js-search-close"><span class="bi-x"></span></button>
-          </form>
-        </div><!-- End Search Form -->
-
-      </div>
-
-    </div>
-
-  </header><!-- End Header -->
+<!-- header -->
+{% include "blog/includes/header.html"%}
+<!-- header -->
 
   <main id="main">
 
@@ -111,7 +71,7 @@ Stan Blog
       </div>
     </section><!-- End Hero Slider Section -->
 
-    <!-- ======= Culture Category Section ======= -->
+    <!-- ======= Posts ======= -->
     <section class="category-section">
       <div class="container" data-aos="fade-up">
 
@@ -183,65 +143,13 @@ Stan Blog
           </div>
         </div>
       </div>
-    </section><!-- End Culture Category Section -->
+    </section><!-- End Section -->
 
   </main><!-- End #main -->
 
-  <!-- ======= Footer ======= -->
-  <footer id="footer" class="footer">
-
-    <div class="footer-content">
-      <div class="container">
-
-        <div class="row g-5">
-          <div class="col-lg-4">
-            <h3 class="footer-heading">About StanBlog</h3>
-            <p>This Blog is just a presentation of Django skills, which is a Python framework for bulding websites</p>
-          </div>
-          <div class="col-6 col-lg-2">
-            <h3 class="footer-heading">Navigation</h3>
-            <ul class="footer-links list-unstyled">
-              <li><a href="index.html"><i class="bi bi-chevron-right"></i> Home</a></li>
-              <li><a href="index.html"><i class="bi bi-chevron-right"></i> Blog</a></li>
-              <li><a href="category.html"><i class="bi bi-chevron-right"></i> Categories</a></li>
-              <li><a href="{% url 'single_post' slug='post1' %}"><i class="bi bi-chevron-right"></i> Single Post</a></li>
-              <li><a href="about.html"><i class="bi bi-chevron-right"></i> About us</a></li>
-              <li><a href="contact.html"><i class="bi bi-chevron-right"></i> Contact</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="footer-legal">
-      <div class="container">
-
-        <div class="row justify-content-between">
-          <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-            <div class="copyright">
-              © Copyright <strong><span>StanBlog</span></strong>. All Rights Reserved
-            </div>
-          </div>
-
-          <div class="col-md-6">
-            <div class="social-links mb-3 mb-lg-0 text-center text-md-end">
-              <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-              <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-              <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-              <a href="#" class="google-plus"><i class="bi bi-skype"></i></a>
-              <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-    </div>
-
-  </footer>
-
-  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <!-- Footer -->
+  {% include "blog/includes/footer.html"%}
+  <!-- Footer -->
 
   <!-- Vendor JS Files -->
   <script src="{% static 'blog/assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>

@@ -10,7 +10,7 @@
       <h3><a href="single_post.html">{{post.title}}</a></h3>
       <p>{{post.content|safe}}</p>
       <div class="d-flex align-items-center author">
-        <div class="photo"><img src="{% static 'blog/assets/img/'|add:post.author|add:'.jpg' %}" alt="" class="img-fluid"></div>
+        <div class="photo"><img src="{% static 'blog/assets/img/'|add:post.author.first_name|add:'.jpg' %}" alt="" class="img-fluid"></div>
         <div class="name">
           <h3 class="m-0 p-0">{{post.author}}</h3>
         </div>
