@@ -1,2 +1,4 @@
-import sqlite3
-print(sqlite3.sqlite_version)
+from django.core.management.utils import get_random_secret_key
+
+
+print(get_random_secret_key())
