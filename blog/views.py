@@ -10,6 +10,7 @@ from django.views import View
 posts_content = Post.objects.all().order_by("date")
 
 
+
 class starting_page(TemplateView):
     template_name = "blog/index.html"
 
@@ -18,21 +19,27 @@ class starting_page(TemplateView):
         context["all_posts"] = posts_content
         return context
 
+class about(TemplateView):
+    template_name = "blog/about.html"
+
+class contact(TemplateView):
+    template_name = "blog/contact.html"
+
 
 class posts(ListView):
     template_name = "blog/all_posts.html"
     model = Post
     context_object_name = "all_posts"
+    print(context_object_name)
     ordering = ["-date"]
 
 
 class posts_to_read(View):
     def get(self, request):
         stored_post_id_list = request.session.get("read_later")    #read session variable from database
-        stored_posts = (Post.objects.get(id=id) for id in stored_post_id_list) 
-        print(stored_posts)
+        all_posts = Post.objects.filter(pk__in=stored_post_id_list) 
         return render(request, "blog/to_read_list.html", {
-            "posts": stored_posts
+            "all_posts": all_posts
         })
 
 
