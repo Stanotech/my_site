@@ -24,10 +24,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-s-kwj4n1yoj0u^k4#y^e#bbm@2ekb%@l=a^d@3gn5ysp8m-z84'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = getenv("IS_DEVELOPMENT", True)
+DEBUG = False
 
 ALLOWED_HOSTS = [
-    getenv("APP_HOST")
+    '172.31.45.89',
+    'Blogg-env.eba-4pahztnx.eu-west-3.elasticbeanstalk.com'
 ]
 
 
@@ -136,7 +137,5 @@ MEDIA_URL = "/user-media/"
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-SESSIONS_COOKIE_AGE = 9999	
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'	
 
