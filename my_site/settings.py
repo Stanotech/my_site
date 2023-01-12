@@ -24,11 +24,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = ")4mov5=uwy1mfb(adh5o4_@kav$e8bkct@d$^bae@q)-2)nrht"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     'nextenv.eba-5jgs8p9c.eu-west-3.elasticbeanstalk.com',
     '172.31.45.89',    
+    '127.0.0.1'
 ]
 
 
@@ -118,7 +119,7 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
-USE_L10N = True
+USE_L10N = False
 
 USE_TZ = True
 
