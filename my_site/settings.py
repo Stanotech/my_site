@@ -27,8 +27,8 @@ SECRET_KEY = ")4mov5=uwy1mfb(adh5o4_@kav$e8bkct@d$^bae@q)-2)nrht"
 DEBUG = False
 
 ALLOWED_HOSTS = [
-'172.31.45.89',
-'Blogg-env.eba-4pahztnx.eu-west-3.elasticbeanstalk.com'
+    'nextenv.eba-5jgs8p9c.eu-west-3.elasticbeanstalk.com',
+    '172.31.45.89',    
 ]
 
 
