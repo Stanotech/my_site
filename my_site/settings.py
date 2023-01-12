@@ -21,14 +21,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-s-kwj4n1yoj0u^k4#y^e#bbm@2ekb%@l=a^d@3gn5ysp8m-z84'
+SECRET_KEY = 'ch96(5%$u8c_2yyp-7csl3_vsb!y))b#k@3cnvys!8v7d&x71@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
-    '172.31.45.89',
-    'Blogg-env.eba-4pahztnx.eu-west-3.elasticbeanstalk.com'
+    # '172.31.45.89',
+    '127.0.0.1'
+    # 'nextenv.eba-5jgs8p9c.eu-west-3.elasticbeanstalk.com'
 ]
 
 
@@ -127,6 +128,7 @@ USE_TZ = True
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
 STATIC_URL = '/static/'
+
 STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]
