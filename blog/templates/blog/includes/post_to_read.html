@@ -1,13 +1,14 @@
 {% load static %}  
 
+
 {% for post in all_posts%}
 
-    <a href="single_post.html" class="me-4 thumbnail">
+    <a href="{% url 'single_post' slug=post.slug %}"" class="me-4 thumbnail">
       <img src="{% static 'blog/assets/img/'|add:post.image %}" alt="" class="img-fluid">
     </a>
     <div>
       <div class="post-meta"><span class="mx-1">&bullet;</span> <span>{{post.date}}</span></div>
-      <h3><a href="single_post.html">{{post.title}}</a></h3>
+      <h3><a href="{% url 'single_post' slug=post.slug %}">{{post.title}}</a></h3>
       <p>{{post.content|safe}}</p>
       <div class="d-flex align-items-center author">
         <div class="photo"><img src="{% static 'blog/assets/img/'|add:post.author.first_name|add:'.jpg' %}" alt="" class="img-fluid"></div>
@@ -17,6 +18,7 @@
       </div>
     </div>
 {% endfor %}
+
 
 
 

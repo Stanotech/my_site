@@ -21,14 +21,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ")4mov5=uwy1mfb(adh5o4_@kav$e8bkct@d$^bae@q)-2)nrht"
+SECRET_KEY = "06x1#p6dh)n+&6@ya&$1_3fu)_)0jbb2wo4#zba467$z$onrw6"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = getenv("IS_DEVELOPMENT", True)
 
 ALLOWED_HOSTS = [
-    'nextenv.eba-5jgs8p9c.eu-west-3.elasticbeanstalk.com',
-    '172.31.45.89',    
+    # 'nextenv.eba-5jgs8p9c.eu-west-3.elasticbeanstalk.com',
+    # '172.31.45.89',    
     '127.0.0.1'
 ]
 
@@ -118,8 +118,6 @@ LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
-
-USE_L10N = False
 
 USE_TZ = True
 

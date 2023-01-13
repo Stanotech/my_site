@@ -7,7 +7,7 @@ from .forms import CommentForm
 from django.views.generic import CreateView, TemplateView, ListView
 from django.views import View
 
-posts_content = Post.objects.all().order_by("date")
+posts_content = list(Post.objects.all().order_by("date"))
 
 
 
@@ -49,11 +49,10 @@ class single_post(View):
         post = Post.objects.get(slug=slug)
         request = self.request
         read_later_list = request.session.get("read_later")
-        print(read_later_list)
-        if read_later_list is None or post.id in read_later_list:
-            read_later = "Remove from List"
-        else:
+        if read_later_list is None or post.id not in read_later_list:
             read_later = "Read later"
+        else:
+            read_later = "Remove from List"
 
         context = {
             "title": post.title,
