@@ -1,9 +1,9 @@
 {% load static %}  
 
+{% if  all_posts != "empty"%}
+  {% for post in all_posts%}
 
-{% for post in all_posts%}
-
-    <a href="{% url 'single_post' slug=post.slug %}"" class="me-4 thumbnail">
+    <a href="{% url 'single_post' slug=post.slug %}" class="me-4 thumbnail">
       <img src="{% static 'blog/assets/img/'|add:post.image %}" alt="" class="img-fluid">
     </a>
     <div>
@@ -17,8 +17,8 @@
         </div>
       </div>
     </div>
-{% endfor %}
+  {% endfor %}
 
-
+{% endif %}
 
 

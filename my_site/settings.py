@@ -21,14 +21,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "06x1#p6dh)n+&6@ya&$1_3fu)_)0jbb2wo4#zba467$z$onrw6"
+SECRET_KEY = getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = getenv("IS_DEVELOPMENT", True)
 
 ALLOWED_HOSTS = [
-    # 'nextenv.eba-5jgs8p9c.eu-west-3.elasticbeanstalk.com',
-    # '172.31.45.89',    
+    'nextenv.eba-5jgs8p9c.eu-west-3.elasticbeanstalk.com',
+    '172.31.45.89',    
     '127.0.0.1'
 ]
 
@@ -82,6 +82,10 @@ WSGI_APPLICATION = 'my_site.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+
 
 DATABASES = {
     'default': {
