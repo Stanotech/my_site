@@ -21,15 +21,15 @@ Stan Blog
 
             <!-- ======= Single Post Content ======= -->
             <div class="single_post">
-              <div class="post-meta"><span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-              <h1 class="mb-5">{{title}}</h1>
+              <div class="post-meta"><span class="mx-1">&bullet;</span> <span>{{post.date}}</span></div>
+              <h1 class="mb-5">{{post.title}}</h1>
               <form action={% url 'session' %} method="POST" id="read_form">
                 {% csrf_token %}
-                <input type="hidden" name="post_id" value="{{ post.id }}">
+                <input type="hidden" name="post_id" value="{{ post.pk }}">
                 <button>{{read_later}}</button>
               </form>
               <br>
-              <p>{{content}}</p>
+              <p>{{post.content}}</p>
             </div><!-- End Single Post Content -->
 
             <!-- ======= Comments ======= -->
@@ -58,7 +58,7 @@ Stan Blog
                 <div class="row">
                   <div class="col-12 mb-3">
 
-                    <form action={% url 'single_post' slug=post.slug %} method="POST" id="my_form">
+                    <form action={% url 'single_post' slug=slug %} method="POST" id="my_form">
                       {% csrf_token %}
                       {% for field in form  %}
                         {{ field.label_tag }}
